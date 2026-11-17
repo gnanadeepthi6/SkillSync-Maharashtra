@@ -2,6 +2,10 @@
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
+# Skill analysis module for industry skill matching
+
+# Feature: Industry skill gap analysis
+print("SkillSync Skill Analysis Module Loaded")
 
 industry_data = {
     "Data Analyst": {
