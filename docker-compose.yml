@@ -1,0 +1,20 @@
+
+services:
+  skillsync:
+    build: .
+    container_name: skillsync-app
+    ports:
+      - "5000:5000"
+    environment:
+      APP_ENV: production
+    volumes:
+      - skillsync_data:/app/data
+    networks:
+      - skillsync-network
+
+volumes:
+  skillsync_data:
+
+networks:
+  skillsync-network:
+    driver: bridge

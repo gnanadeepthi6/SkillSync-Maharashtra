@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SkillSync Maharashtra</title>
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>SkillSync Maharashtra</h1>
+    <p>Industry Skill Gap Analysis Platform</p>
+
+    <form method="POST">
+        <label>Student Name</label>
+        <input type="text" name="name" required
+        placeholder="Enter your name">
+
+        <label>Select Job Role</label>
+        <select name="role">
+            {% for role in roles %}
+            <option value="{{ role }}">{{ role }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Enter Your Existing Skills</label>
+        <input type="text" name="skills" required
+        placeholder="Example: Python, SQL">
+
+        <button type="submit">Analyse Skills</button>
+    </form>
+
+    {% if result %}
+    <div class="results">
+        <h2>Skill Analysis Results</h2>
+        <p><b>Student:</b> {{ result.name }}</p>
+        <p><b>Job Role:</b> {{ result.role }}</p>
+
+        <h3>Available Skills</h3>
+        {% for skill in result.available %}
+        <span class="available">{{ skill }}</span>
+        {% else %}
+        <p>None identified</p>
+        {% endfor %}
+
+        <h3>Missing Skills</h3>
+        {% for skill in result.missing %}
+        <span class="missing">{{ skill }}</span>
+        {% else %}
+        <p>No skill gaps identified!</p>
+        {% endfor %}
+
+        <h3>Recommended Courses</h3>
+        {% for course in result.courses %}
+        <p>✓ {{ course }}</p>
+        {% else %}
+        <p>No additional courses required.</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
