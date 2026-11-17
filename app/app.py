@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
+# Skill analysis module for industry skill matching
 
 industry_data = {
     "Data Analyst": {
